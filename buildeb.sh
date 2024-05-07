@@ -1,7 +1,5 @@
 #!/bin/bash
 
-CUSTOM_HOSTNAME="debian-live"
-
 # Function for spinning indicator
 spinner()
 {
