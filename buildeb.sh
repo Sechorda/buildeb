@@ -1,20 +1,5 @@
 #!/bin/bash
 
-# Function for spinning indicator
-spinner()
-{
-    local pid=$!
-    local delay=0.2
-    local spinstr='|/-\'
-    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-        local temp=${spinstr#?}
-        printf "\r [%c]  %s" "$spinstr" "$1"
-        local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
-    done
-    printf "\r [\xE2\x9C\x94]  %s\n" "$1"
-}
-
 # Install necessary applications
 sudo apt-get update >/dev/null
 sudo apt-get install -y \
@@ -32,6 +17,21 @@ sudo apt-get install -y \
     mtools \
     dosfstools >/dev/null &
 spinner "Installing necessary dependencies"
+
+# Function for spinning indicator
+spinner()
+{
+    local pid=$!
+    local delay=0.2
+    local spinstr='|/-\'
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+        local temp=${spinstr#?}
+        printf "\r [%c]  %s" "$spinstr" "$1"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+    done
+    printf "\r [\xE2\x9C\x94]  %s\n" "$1"
+}
 
 # Create directory for storing files
 mkdir -p "${HOME}/LIVE_BOOT" &
