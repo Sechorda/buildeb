@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Install necessary applications
+apt-get install procps \
+    sudo >/dev/null
 sudo apt-get update >/dev/null
 sudo apt-get install -y \
-    procps \
-    sudo \
     apt-utils \
     debootstrap \
     squashfs-tools \
