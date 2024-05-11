@@ -1,22 +1,8 @@
 #!/bin/bash
 
-# Install necessary applications
+#needed
 apt-get install procps \
     sudo >/dev/null
-sudo apt-get update >/dev/null
-sudo apt-get install -y \
-    apt-utils \
-    debootstrap \
-    squashfs-tools \
-    xorriso \
-    isolinux \
-    syslinux-efi \
-    grub-pc-bin \
-    grub-efi-amd64-bin \
-    grub-efi-ia32-bin \
-    mtools \
-    dosfstools >/dev/null &
-spinner "Installing necessary dependencies"
 
 # Function for spinning indicator
 spinner()
@@ -32,6 +18,22 @@ spinner()
     done
     printf "\r [\xE2\x9C\x94]  %s\n" "$1"
 }
+
+sudo apt-get update >/dev/null
+sudo apt-get install -y \
+    apt-utils \
+    debootstrap \
+    squashfs-tools \
+    xorriso \
+    isolinux \
+    syslinux-efi \
+    grub-pc-bin \
+    grub-efi-amd64-bin \
+    grub-efi-ia32-bin \
+    mtools \
+    dosfstools >/dev/null &
+spinner "Installing necessary dependencies"
+
 
 # Create directory for storing files
 mkdir -p "${HOME}/LIVE_BOOT" &
