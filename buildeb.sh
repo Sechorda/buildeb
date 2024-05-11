@@ -18,6 +18,8 @@ spinner()
 # Install necessary applications
 sudo apt-get update >/dev/null
 sudo apt-get install -y \
+    sudo \
+    apt-utils \
     debootstrap \
     squashfs-tools \
     xorriso \
