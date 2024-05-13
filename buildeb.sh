@@ -71,6 +71,34 @@ EOF
 } &
 spinner "Installing custom programs to image"
 
+# Installing custom programs to image
+{
+    sudo chroot "${HOME}/LIVE_BOOT/chroot" << EOF >/dev/null 2>&1
+apt-get update
+apt-get install -y --no-install-recommends \
+    wifite \
+    vim
+EOF
+} &
+spinner "Installing custom programs to image"
+
+# Set hostname
+{
+    sudo chroot "${HOME}/LIVE_BOOT/chroot" << EOF >/dev/null 2>&1
+echo "stickos" > /etc/hostname
+EOF
+} &
+spinner "Setting hostname to stickos"
+
+# Set root password
+{
+    sudo chroot "${HOME}/LIVE_BOOT/chroot" << EOF >/dev/null 2>&1
+echo 'root:live' | chpasswd
+EOF
+} &
+spinner "Setting root password to live"
+
+
 # Create directories
 mkdir -p "${HOME}/LIVE_BOOT"/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},tmp} &
 spinner "Creating staging directories"
